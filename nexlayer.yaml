@@ -2,7 +2,7 @@ application:
   name: standardnotes
   pods:
   - name: app
-    image: mirror.gcr.io/standardnotes/server:latest
+    image: standardnotes/server:latest
     path: /
     servicePorts:
     - 3000
@@ -20,7 +20,7 @@ application:
       VALET_TOKEN_SECRET: "a1f2f51fd658246202269aa2c5f4e4bb55aaafaf0fab715caf963d360b40be93"
       AUTH_SERVER_ENCRYPTION_SERVER_KEY: "2cf69fbb0e40b1ea1f81b741706ffefde91903e17b0a9c24f898aa405e79ecf8"
   - name: mysql
-    image: mirror.gcr.io/library/mysql:8
+    image: mysql:8
     servicePorts:
     - 3306
     vars:
@@ -28,15 +28,7 @@ application:
       MYSQL_USER: std_notes_user
       MYSQL_PASSWORD: changeme123
       MYSQL_ROOT_PASSWORD: changeme123
-    volumes:
-    - name: sn-db
-      mountPath: /var/lib/mysql
-      size: 5Gi
   - name: redis
-    image: mirror.gcr.io/library/redis:7-alpine
+    image: redis:7-alpine
     servicePorts:
     - 6379
-    volumes:
-    - name: sn-redis
-      mountPath: /data
-      size: 2Gi
